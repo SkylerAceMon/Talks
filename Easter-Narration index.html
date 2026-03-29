@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Easter Sunday Narration</title>
+<style>
+  :root {
+    --cream: #faf7f2;
+    --ink: #1a1614;
+    --warm-mid: #5c4f3a;
+    --song-color: #8b4513;
+    --rule-color: #c8b89a;
+    --quote-indent: #a08060;
+    --section-bg: #f4efe6;
+    --narration-size: 2.4rem;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 20px;
+    background-color: var(--cream);
+  }
+
+  body {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    background-color: var(--cream);
+    color: var(--ink);
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .page-header {
+    text-align: center;
+    padding: 60px 36px 40px;
+    border-bottom: 1px solid var(--rule-color);
+    background-color: var(--cream);
+  }
+
+  .page-header h1 {
+    font-size: 1.9rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .page-header .subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--warm-mid);
+    font-weight: 400;
+  }
+
+  .cross-ornament {
+    font-size: 1.2rem;
+    color: var(--rule-color);
+    margin: 18px 0 0;
+    letter-spacing: 0.3em;
+  }
+
+  .content {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 0 36px 80px;
+    overflow: hidden;
+  }
+
+  /* SONG BLOCKS */
+  .song-block {
+    margin: 40px -36px 44px;
+    padding: 28px 36px 26px;
+    background-color: #2c1f14;
+    border-top: 1px solid #5a3a22;
+    border-bottom: 1px solid #5a3a22;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .song-icon {
+    font-size: 1.4rem;
+    color: #c8906a;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .song-text {
+    flex: 1;
+  }
+
+  .song-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #a07050;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .song-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #f0e0cc;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: block;
+  }
+
+  /* COLLAPSIBLE SECTIONS */
+  details.narration-section {
+    margin: 0 0 12px;
+    border-radius: 4px;
+  }
+
+  details.narration-section summary {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 0 16px;
+    cursor: pointer;
+    list-style: none;
+    border-bottom: 2px solid var(--song-color);
+    margin-bottom: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  details.narration-section summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details.narration-section summary h2 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--song-color);
+    line-height: 1.35;
+    flex: 1;
+    margin: 0;
+  }
+
+  .toggle-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--song-color);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 300;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, background-color 0.2s ease;
+    line-height: 1;
+  }
+
+  details.narration-section[open] .toggle-icon {
+    transform: rotate(45deg);
+    background-color: var(--warm-mid);
+  }
+
+  /* BODY TEXT */
+  .section-body {
+    color: var(--ink);
+    padding-top: 32px;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-body p {
+    font-size: var(--narration-size);
+    line-height: 1.7;
+    margin-bottom: 1.2em;
+    font-weight: 300;
+  }
+
+  /* Dramatic single lines */
+  .section-body p.emphasis {
+    font-size: calc(var(--narration-size) * 1.067);
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 0.7em;
+  }
+
+  /* Bold emphasis — speaker cues */
+  .section-body strong {
+    font-weight: 600;
+    color: #0f0c0a;
+  }
+
+  /* BLOCK QUOTES */
+  blockquote {
+    margin: 36px 0 36px 0;
+    padding: 26px 30px 22px 28px;
+    background-color: var(--section-bg);
+    border-left: 3px solid var(--quote-indent);
+    border-radius: 2px;
+  }
+
+  blockquote p {
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.85;
+    color: #2d2520;
+    margin-bottom: 0.75em;
+    font-weight: 300;
+  }
+
+  blockquote p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  blockquote .attribution {
+    font-size: 0.72rem;
+    font-style: normal;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--warm-mid);
+    margin-top: 14px;
+    display: block;
+    font-weight: 400;
+  }
+
+  /* SCRIPTURE REFERENCES */
+  .scripture-ref {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--warm-mid);
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  /* DIVIDERS */
+  .section-divider {
+    text-align: center;
+    margin: 56px 0 50px;
+    color: var(--rule-color);
+    font-size: 1.1rem;
+    letter-spacing: 0.5em;
+  }
+
+  .thin-rule {
+    border: none;
+    border-top: 1px solid var(--rule-color);
+    margin: 44px 0;
+    opacity: 0.6;
+  }
+
+  /* CLOSING */
+  .closing {
+    text-align: center;
+    padding: 50px 0 20px;
+    border-top: 1px solid var(--rule-color);
+    margin-top: 50px;
+  }
+
+  .closing p {
+    font-size: 1.15rem;
+    color: var(--warm-mid);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 0.6em;
+  }
+
+  .closing .amen {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: 0.08em;
+    margin-top: 12px;
+  }
+
+  /* FONT SIZE CONTROLLER */
+  .font-controller {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+    padding: 14px 24px;
+    background-color: var(--section-bg);
+    border: 1px solid var(--rule-color);
+    border-radius: 50px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .font-controller-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-mid);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .font-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1.5px solid var(--song-color);
+    background: transparent;
+    color: var(--song-color);
+    font-size: 1.3rem;
+    font-weight: 300;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    line-height: 1;
+    font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .font-btn:active {
+    background-color: var(--song-color);
+    color: var(--cream);
+  }
+
+  .font-size-display {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink);
+    min-width: 42px;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  /* READ TIME BADGE */
+  .read-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--warm-mid);
+    background-color: var(--section-bg);
+    border: 1px solid var(--rule-color);
+    border-radius: 20px;
+    padding: 4px 10px 4px 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-right: 10px;
+  }
+
+  .read-time svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  /* TOTAL TIME BADGE */
+  .header-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .total-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background-color: var(--song-color);
+    border-radius: 20px;
+    padding: 5px 12px 5px 9px;
+    white-space: nowrap;
+  }
+
+  .total-time svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    opacity: 0.85;
+  }
+
+  em {
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="header-title-row">
+    <h1>Easter Sunday Narration</h1>
+    <span class="total-time">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span id="total-time-display">18–24 min</span>
+    </span>
+  </div>
+  <p class="subtitle">A Service of Song and Word</p>
+  <div class="cross-ornament">✦ ✦ ✦</div>
+  <div class="font-controller">
+    <span class="font-controller-label">Narration Size</span>
+    <button class="font-btn" id="font-decrease" aria-label="Decrease font size">−</button>
+    <span class="font-size-display" id="font-display">100%</span>
+    <button class="font-btn" id="font-increase" aria-label="Increase font size">+</button>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- SONG 1 -->
+  <div class="song-block">
+    <div class="song-icon">♪</div>
+    <div class="song-text">
+      <span class="song-label">Song</span>
+      <span class="song-title">Savior of My Soul</span>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <details class="narration-section" open>
+    <summary>
+      <h2>He Refuses to Stay Far Away</h2>
+      <span class="read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3–4 min</span>
+      <div class="toggle-icon">+</div>
+    </summary>
+    <div class="section-body">
+    <p>Good morning, everyone and happy early Easter. That's my daughter!!</p>
+
+    <p>I want to start with <strong>a confession.</strong></p>
+
+    <p>For a long time, and even now sometimes, my relationship with Jesus Christ can be similar to how I experience someone famous. I know about Him. I read about Him. I believe that He exists. But there is sometimes this quiet, persistent feeling — one I <strong>rarely say out loud</strong> — until now, that He is somehow close to <strong>"other people."</strong> Windsyr was recently in LA for several weeks and she got to meet with some pretty amazing people in the music industry and I got to hear all the stories. I know the names, I have seen the photos, hear the reports, and she even once sent me a voice recording of her talking with some of these people and I recognize the voice, but <strong>I don't know them the way Windsyr knows them.</strong></p>
+
+    <p>Sometimes, that's how I can feel about Christ. I know people with more faith. More history. More to offer. People who have their lives more together than I do on a random Sunday morning...<strong>people who actually know Him.</strong></p>
+
+    <p>There are people in this audience right now who I put in that category with Christ. They know him, but I sometimes place Him — not intentionally, but honestly — <strong>at a distance.</strong> As a character, not a caretaker. As familiar, but <strong>not always family.</strong></p>
+
+    <p>My hope today is that we all experience a realization of sorts — just a quiet epiphany, or maybe just the smallest spark of wonder that says: <strong>the Easter story isn't a distant drama.</strong> It's a message, delivered by the Savior of the world to us personally — and that message is — that He...Christ...<strong>refuses to be obscure, distant, or far away.</strong> He didn't stay in heaven. He came. He suffered. He died. And then He walked out of that tomb, and kept walking, <strong>closing every gap,</strong> until He was standing close enough to speak our name.</p>
+
+    <p class="emphasis">Not gradually. Not conditionally. <strong>Not after we've earned the right to proximity.</strong></p>
+
+    <p class="emphasis"><strong>Now. Completely. Personally.</strong></p>
+
+    <p>The song we just heard begins in exactly that place — <em>I've heard the stories all my life.</em> That's where most of us actually are. We've heard. We believe, mostly. But <strong>belief from a distance is still distance.</strong> And Christ has never been interested in being believed in...from afar.</p>
+
+    <p><strong>He is interested in getting close.</strong></p>
+
+    <p>That is the message Easter carries. Not a theology lecture. Not a pageant viewed from the back row. A message, delivered personally, by the Savior of the world — that <strong>He refuses to stay far away.</strong></p>
+
+    <p class="emphasis">He didn't stay in heaven.</p>
+
+    <p class="emphasis"><strong>He came.</strong></p>
+
+    <p>And once we understand that, the entire story is about Him <strong>moving toward us</strong> — every step, every choice, every moment from Bethlehem to Golgotha to the empty tomb — <strong>we can't unhear it.</strong></p>
+
+    <p>James E. Talmage understood this. In <em>Jesus the Christ</em> he described Christ as the Good Shepherd in terms that are anything but abstract:</p>
+
+    <blockquote>
+      <p>"Christ has personal interest in and love for his flock, <strong>and knows each sheep by name."</strong></p>
+      <span class="attribution">— James E. Talmage, Jesus the Christ</span>
+    </blockquote>
+
+    <p>Today we're going to follow Christ as He makes His way toward us through the Easter story. The music will take us through each station of that journey. And by the end, I hope you see it clearly: <strong>the Easter story isn't a distant drama. It's a personal one.</strong></p>
+
+    <p>So let's follow Him.</p>
+
+    <p><strong>He's already moving.</strong></p>
+  </div>
+  </details>
+
+
+  <!-- SONG 2 -->
+  <div class="song-block">
+    <div class="song-icon">♪</div>
+    <div class="song-text">
+      <span class="song-label">Song</span>
+      <span class="song-title">Certain Women (English and Spanish)</span>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <details class="narration-section" open>
+    <summary>
+      <h2>The People Who Move Toward Him</h2>
+      <span class="read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3–4 min</span>
+      <div class="toggle-icon">+</div>
+    </summary>
+    <div class="section-body">
+    <p>There's a phrase tucked into the Gospel of Luke that I keep coming back to.</p>
+
+    <p>Luke 23, as the procession toward Golgotha is described. And the text simply says: <em><strong>"certain women followed."</strong></em></p>
+
+    <p>That's it. <strong>That's the phrase.</strong></p>
+
+    <p>Not their credentials. Not their position. Not their plan. Just: <strong>certain women. Following.</strong></p>
+
+    <p>After the burial, we hear again: <em>"certain women came."</em></p>
+
+    <p>And on the third morning, again these same certain women arrive at the tomb before dawn, carrying spices they had prepared, <strong>uncertain of how they would even roll the stone away — but going anyway.</strong></p>
+
+    <p>I want to sit with that phrase: <em>certain women.</em></p>
+
+    <p>In Luke's original Greek, the word translated "certain" means <strong>known</strong> — specific, notable, identifiable. Luke isn't saying "some women" or "random women." He means: <strong>these particular women.</strong> Women whose presence at the cross and the tomb was unremarkable only because it was completely consistent with who they already were.</p>
+
+    <p><strong>Of course they were there. Of course they followed.</strong> They started following him in Galilee and they kept following Him. Not because these "certain women" were perfect, but because they were <strong>drawn to Christ.</strong> They wanted to be close to Him. So they kept going to where He was.</p>
+
+    <p>Now — if the Easter story is about Christ moving toward us, there is a corresponding movement the story also honors: <strong>people who decide to move toward Him.</strong> The certain women represent something essential — what it looks like to close the distance from our side.</p>
+
+    <p>They didn't understand everything. <strong>You don't have to.</strong><br>
+    They didn't have a plan for everything. <strong>That's ok.</strong></p>
+
+    <p>They just went. In shock sometimes, in despair, and <strong>even in the dark.</strong> They went to his sermons, to his miracles, to the cross, to the sealed tomb. They went with faith, hope, spices and even broken hearts — and probably, like many of us, they went sometimes...with <strong>no clear idea of what happens next.</strong></p>
+
+    <p>The message of Christ is universal. <strong>He will come.</strong></p>
+
+    <p>But it is also always personal. <strong>We must follow.</strong></p>
+
+    <p>Like certain women, <strong>we must keep following.</strong> We must keep closing the distance between us and Christ.</p>
+
+    <p>If we fall, <strong>we must get up.</strong> If we pause, we should gather ourselves and start again. If we doubt — we should remember it is ok to go through the motions, because when we do certain things, when we take certain action, <strong>we will find Him.</strong></p>
+
+    <p>This is the story of Easter. We should keep moving towards him...</p>
+
+    <p><strong>But Christ...isn't finished moving towards us yet!</strong></p>
+
+    <p>The morning is still ahead. But before the morning is the cross, and before the cross, there was a garden.</p>
+
+    <hr class="thin-rule">
+
+    <p>And before the garden, we begin to understand that <strong>He understands what it means to heal.</strong></p>
+  </div>
+  </details>
+
+
+  <!-- SONG 3 -->
+  <div class="song-block">
+    <div class="song-icon">♪</div>
+    <div class="song-text">
+      <span class="song-label">Song</span>
+      <span class="song-title">Healer</span>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <details class="narration-section" open>
+    <summary>
+      <h2>He Didn't Heal Us From a Distance</h2>
+      <span class="read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3–4 min</span>
+      <div class="toggle-icon">+</div>
+    </summary>
+    <div class="section-body">
+    <p>Most of the time when I picture Christ as healer, I tend to picture <strong>the moment after the healing.</strong> Those images show the big reveal. The healed! Clothes are clean, wounds gone, people are whole.</p>
+
+    <p>When the leper is made whole — I picture the whole, healed man.<br>
+    When we encounter the blind man, I tend to jump to the man with sight...<strong>blinking in the sudden light.</strong> When the fever breaks or the dead rise, I see them waking up or walking out. These are true images. They are beautiful images.</p>
+
+    <p>But I believe we miss something if that is all we see. It is healthy to remember that <strong>before the healing, there was the mess</strong> — the problem, the situation, the person that needed to be healed.</p>
+
+    <p>Before the leper is clean, there was an individual with wounds, <strong>cast out, shunned, ashamed.</strong> Before sight returned, <strong>darkness.</strong> Before breath of life restored, <strong>stillness and despair.</strong> Before forgiveness, <strong>mistakes.</strong></p>
+
+    <p>In each case, <strong>Christ came.</strong> He reached for them, moved close to them, looked on them. Spoke to them. And then...healed them.</p>
+
+    <p><strong>Christ is comfortable with our imperfection</strong>...because the Atonement closed that gap.</p>
+
+    <p>There is a song called "The Healer" that contains a line that stops me in my tracks each time I hear it: <em>He knew that there'd be pain and suffering. He knew that there'd be blood and tears. And still He made the earth beneath us.</em></p>
+
+    <p><strong>He knew.</strong> Before the world was framed. Before a single one of us drew a breath or made a first mistake, <strong>He knew exactly what the bill would be — and He signed His name to it anyway.</strong></p>
+
+    <p>The prophet Alma described this in language that has stayed with me:</p>
+
+    <blockquote>
+      <span class="scripture-ref">Alma 7:11–12</span>
+      <p>"He shall go forth, suffering pains and afflictions and temptations of every kind; and this that the word might be fulfilled which saith he will take upon him the pains and the sicknesses of his people. And he will take upon him their infirmities, that his bowels may be filled with mercy, <strong>according to the flesh, that he may know according to the flesh how to succor his people</strong> according to their infirmities."</p>
+    </blockquote>
+
+    <p>That phrase — <em>know according to the flesh</em> — is not poetry. <strong>It is a description of a methodology.</strong> He needed to experience the suffering fully in order to know it fully. <strong>Not as an observer. As a participant.</strong></p>
+
+    <p>Elder Neal A. Maxwell put it this way:</p>
+
+    <blockquote>
+      <p>"Christ somehow came to know — just as specifically prophesied — our griefs, sorrows, pains, sicknesses, afflictions, and infirmities. He did so that he might know, according to the flesh, <strong>how to succor and to help us</strong> in the midst of our infirmities."</p>
+      <span class="attribution">— Elder Neal A. Maxwell</span>
+    </blockquote>
+
+    <p><strong>This is not healing from a distance.</strong> This is not healing because He cannot tolerate the unclean.</p>
+
+    <p>This is healing because <strong>he knows how it feels</strong> to need to be healed, to be suffering. Every broken piece, every hidden wound, every weight you've carried...for so long — <strong>He's waded into all of it.</strong></p>
+
+    <p>This is a part of Easter we sometimes rush past because there are bigger headlines. We see the cross, we want the resurrection morning.</p>
+
+    <p>And we'll get there.</p>
+
+    <p>But let's not forget...<strong>before all of that, Christ came toward those that needed to be healed.</strong></p>
+
+    <hr class="thin-rule">
+
+    <p>Let's keep moving...the next stop, the garden.</p>
+  </div>
+  </details>
+
+
+  <!-- SONG 4 -->
+  <div class="song-block">
+    <div class="song-icon">♪</div>
+    <div class="song-text">
+      <span class="song-label">Song</span>
+      <span class="song-title">Gethsemane</span>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <details class="narration-section" open>
+    <summary>
+      <h2>The Smallest Circle</h2>
+      <span class="read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>4–5 min</span>
+      <div class="toggle-icon">+</div>
+    </summary>
+    <div class="section-body">
+    <p>Of all the places He could have gone that night, <strong>He chose a garden.</strong></p>
+
+    <p>Not the temple courts. Not the open hillsides where He had spoken to thousands.</p>
+
+    <p><strong>A garden.</strong> This is not a stadium, a stage, a spectacle. When I think of a garden, I think of a small, private place. I actually think of Roy and Lola's garden, in Sandy, Utah. Roy and Lola were my grandparents. They loved their garden. They weeded it. They pruned it. They kept this garden flourishing. When I was young, I would go there and the plants would be taller than me. <strong>It was quiet. A world unto itself.</strong></p>
+
+    <p>I imagine Gethsemane might have been similar. Within the garden, Christ went further inward. He asked the disciples to wait. He took only Peter, James, and John. Then He went a little further still — a stone's throw, Luke says — <strong>and knelt down alone.</strong></p>
+
+    <p>Think about the geography of that. The journey had been narrowing since Bethlehem. From the vast declaration of angelic choirs to a stable with a low roof. From Galilee to Jerusalem. From Jerusalem to a garden. From the garden to a stone's throw away — <strong>to being alone, in the dark.</strong></p>
+
+    <p><strong>The smallest possible circle.</strong></p>
+
+    <p><strong>And there, inside it, He took on the largest possible weight.</strong></p>
+
+    <p>Elder Talmage's description of what happened next is among the most searching passages in all of Latter-day Saint literature:</p>
+
+    <blockquote>
+      <p>"Christ's agony in the garden is unfathomable by the finite mind, both as to intensity and cause. … It was not physical pain, nor mental anguish alone, that caused Him to suffer such torture as to produce an extrusion of blood from every pore; but a spiritual agony of soul such as only God was capable of experiencing. … In some manner, <strong>actual and terribly real</strong> though to man incomprehensible, the Savior took upon Himself the burden of the sins of mankind from Adam to the end of the world."</p>
+      <span class="attribution">— James E. Talmage, Jesus the Christ</span>
+    </blockquote>
+
+    <p><em>Actual and terribly real.</em> That is Talmage's language. <strong>Not symbolic. Not metaphorical. Actual.</strong></p>
+
+    <p>He asked, if it were possible, that the cup might pass.</p>
+
+    <blockquote>
+      <span class="scripture-ref">Luke 22:42</span>
+      <p>"Father, if thou be willing, remove this cup from me: <strong>nevertheless not my will, but thine, be done."</strong></p>
+    </blockquote>
+
+    <p><strong>It didn't pass.</strong></p>
+
+    <p><strong>And He stayed.</strong></p>
+
+    <p>The disciples fell asleep. One of His own came through the gate with torches and a kiss — the most intimate gesture imaginable turned inside out into something terrible. The crowd took Him.</p>
+
+    <p><strong>And still He stayed.</strong></p>
+
+    <p>Because <strong>staying was the whole point.</strong> Every step of this story is Him refusing to stop. Refusing to turn back. <strong>Refusing to maintain a safe, manageable distance</strong> from what we needed Him to do.</p>
+
+    <p>From the Garden, Christ is taken to the Cross — and finally, on that iconic cross, he announced that what started in that private, intimate garden was finally, absolutely, <strong>"finished."</strong></p>
+
+    <p>Talmage writes of the moment all things were finally accomplished:</p>
+
+    <blockquote>
+      <p>"Jesus the Christ was dead. His life had not been taken from Him except as He had willed to permit. Sweet and welcome as would have been the relief of death in any of the earlier stages of His suffering from Gethsemane to the cross, <strong>He lived until all things were accomplished as had been appointed."</strong></p>
+      <span class="attribution">— James E. Talmage, Jesus the Christ</span>
+    </blockquote>
+
+    <p>Let me say that last line again...<em><strong>He lived until all things were accomplished.</strong></em></p>
+
+    <p><strong>That sentence contains the entire gospel.</strong> He did not shirk. He did not walk away. He moved to us and toward all things, <strong>until they were accomplished.</strong></p>
+
+    <p>Let's pause right there...just for a minute. Let's let that soak in. Let's not forget <strong>the price he paid</strong> — what was accomplished for us...that night in the garden and on the cross.</p>
+
+    <p>He came...and he will come again...</p>
+
+    <p><strong>And what comes next is the part history has never gotten over.</strong></p>
+  </div>
+  </details>
+
+
+  <!-- SONG 5 -->
+  <div class="song-block">
+    <div class="song-icon">♪</div>
+    <div class="song-text">
+      <span class="song-label">Song</span>
+      <span class="song-title">Risen</span>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <details class="narration-section" open>
+    <summary>
+      <h2>The Third Day</h2>
+      <span class="read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3–4 min</span>
+      <div class="toggle-icon">+</div>
+    </summary>
+    <div class="section-body">
+    <p>They laid Him in a tomb.</p>
+
+    <p>And His friends believed that <strong>everything was lost.</strong></p>
+
+    <p>There is a feeling that the story is over. That the thing you were counting on has been sealed behind a stone. That the person, the promise, the future you had built your hope on is simply — <strong>gone.</strong></p>
+
+    <p><strong>That is Saturday.</strong> We have all had Saturdays. Saturdays are real. Dark. Finished. Sealed.</p>
+
+    <p>But then <strong>the third day came.</strong> The morning light...and as Alma promised that all things testify of Christ — the Sun, like it has done every day since the first morning, rises...but this time <strong>physics, prophecies and promises converge:</strong></p>
+
+    <p>James E. Talmage describes that morning in language that makes you feel you are there:</p>
+
+    <blockquote>
+      <p>"While it was yet dark, the earth began to quake; an angel of the Lord descended in glory, <strong>rolled back the massive stone from the portal of the tomb, and sat upon it.</strong> His countenance was brilliant as the lightning, and his raiment was as the driven snow for whiteness. The soldiers, paralyzed with fear, fell to the earth as dead men."</p>
+      <span class="attribution">— James E. Talmage, Jesus the Christ</span>
+    </blockquote>
+
+    <p>And then, into this extraordinary scene, walked <strong>a woman who had no idea what she was about to find.</strong></p>
+
+    <p>Mary Magdalene arrived before anyone else. The tomb is open. The burial clothes are folded. Someone's taken the body. <strong>She weeps.</strong></p>
+
+    <p><strong>And then...she hears her name.</strong></p>
+
+    <p>This is the moment I cannot get past. Not only does Christ conquer death and rise again — but on the dawn of the biggest event in history, the thing that proves his divinity, his godhood, his limitless power and charity...<strong>at this very moment...he does what we have seen him do time and time again.</strong></p>
+
+    <p><strong>He comes toward the one.</strong></p>
+
+    <p>Listen to how Talmage describes it:</p>
+
+    <blockquote>
+      <p>"It was Jesus to whom she spake, her beloved Lord, though she knew it not. <strong>One word from His living lips changed her agonized grief into ecstatic joy.</strong> 'Jesus saith unto her, Mary.' The voice, the tone, the tender accent she had heard and loved in the earlier days lifted her from the despairing depths into which she had sunk."</p>
+      <span class="attribution">— James E. Talmage, Jesus the Christ</span>
+    </blockquote>
+
+    <p><strong>One word.</strong></p>
+
+    <p>Not a title. Not "woman" or "believer" or "servant."</p>
+
+    <p><strong>Her name.</strong></p>
+
+    <p><em><strong>Mary.</strong></em></p>
+
+    <p>This is the moment <strong>the distance fully collapses.</strong> Christ has come from heaven. He has entered the world. He has gone to the center of the garden. He has gone onto the cross. He's gone into the tomb.</p>
+
+    <p><strong>And now, He walks out of the tomb.</strong></p>
+
+    <p>And the first thing He did — before the appearances to the apostles, before the commission to go into all the world — <strong>the first thing He does, was find a weeping woman who thought everything was lost.</strong></p>
+
+    <p><strong>...and He called her by name.</strong> That is the Miracle.</p>
+  </div>
+  </details>
+
+
+  <!-- SONG 6 -->
+  <div class="song-block">
+    <div class="song-icon">♪</div>
+    <div class="song-text">
+      <span class="song-label">Song</span>
+      <span class="song-title">The Miracle</span>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <details class="narration-section" open>
+    <summary>
+      <h2>Close Enough to Speak Your Name</h2>
+      <span class="read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2–3 min</span>
+      <div class="toggle-icon">+</div>
+    </summary>
+    <div class="section-body">
+    <p>I began this morning with a confession — that I, and maybe some of you, quietly experience Christ at a distance...as a character, not a caretaker. As familiar, <strong>but not always family.</strong></p>
+
+    <p>In addition to the gifts of forgiveness and resurrection, <strong>that feeling is one thing the Easter story is specifically meant to correct.</strong></p>
+
+    <p>Christ's birth, life, atonement, and resurrection <strong>isn't a distant drama.</strong> It's a message that is universal but <strong>deeply personal.</strong></p>
+
+    <p>He didn't stay in heaven. He came. He suffered. He died. And then He walked out of that tomb, and kept walking, <strong>closing every gap with every step,</strong> until He was standing close enough to <strong>speak your name.</strong></p>
+
+    <p>The song we just heard lists the miracles — walking on water, calming the storm, healing the leper, feeding the multitude, raising the dead. Grand, sweeping, history-altering miracles. And then it turns on a single word.</p>
+
+    <p class="emphasis"><strong><em>But.</em></strong></p>
+
+    <p><strong>The miracle that rescues me. The miracle that rescues you.</strong></p>
+
+    <p><strong>That turn is Easter.</strong></p>
+
+    <p>President Holland said it this way:</p>
+
+    <blockquote>
+      <p><strong>"It is not possible for you to sink lower than the infinite light of Christ's Atonement shines."</strong></p>
+      <span class="attribution">— President Jeffrey R. Holland</span>
+    </blockquote>
+
+    <p>Think about that. <strong>Whatever distance you feel between yourself and Him right now</strong> — whatever weight you carried in here this morning or any morning — <strong>that distance is not too great. That stone is not too heavy.</strong></p>
+
+    <p><strong>Because of what happened in that garden, on that cross, and on that morning.</strong></p>
+
+    <p>He atoned for all of us, finished his work, gave up the ghost, and then <strong>walked out of that tomb</strong> — and He has been <strong>walking toward us ever since.</strong></p>
+
+    <blockquote>
+      <p><em>"He will take upon him their infirmities, that his bowels may be filled with mercy, according to the flesh, that he may know according to the flesh how to succor his people according to their infirmities. And he will take upon him death, <strong>that he may loose the bands of death which bind his people."</strong></em></p>
+    </blockquote>
+
+    <p><strong>He is not here. He is risen.</strong></p>
+
+    <p>I testify that on this morning like every morning...he is not there in that tomb. He is here, here...and here...and he is risen. <strong>He knows my name. He knows your name. And he knows you.</strong></p>
+
+    <p>And that is the miracle — that changes everything. The Easter story <strong>isn't a distant drama.</strong> It's a universal miracle that is <strong>deeply personal.</strong></p>
+
+    <p class="emphasis"><strong>He is not here. He is risen.</strong></p>
+  </div>
+  </details>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <p>Happy Easter.</p>
+    <p class="amen">In the name of Jesus Christ, Amen.</p>
+    <div class="cross-ornament" style="margin-top: 32px;">✦ ✦ ✦</div>
+  </div>
+
+</div>
+
+<script>
+  // Per-section delivery times [min, max] in minutes
+  // Order matches DOM order of details.narration-section elements
+  const SECTION_TIMES = [
+    [3, 4],  // He Refuses to Stay Far Away
+    [3, 4],  // The People Who Move Toward Him
+    [3, 4],  // He Didn't Heal Us From a Distance
+    [4, 5],  // The Smallest Circle
+    [3, 4],  // The Third Day
+    [2, 3],  // Close Enough to Speak Your Name
+  ];
+
+  const totalDisplay = document.getElementById('total-time-display');
+
+  function recalcTotal() {
+    let minTotal = 0;
+    let maxTotal = 0;
+    document.querySelectorAll('details.narration-section').forEach((details, i) => {
+      if (details.open) {
+        minTotal += SECTION_TIMES[i][0];
+        maxTotal += SECTION_TIMES[i][1];
+      }
+    });
+    if (minTotal === 0) {
+      totalDisplay.textContent = '—';
+    } else if (minTotal === maxTotal) {
+      totalDisplay.textContent = minTotal + ' min';
+    } else {
+      totalDisplay.textContent = minTotal + '–' + maxTotal + ' min';
+    }
+  }
+
+  // Collapsible sections — init icons and bind toggle
+  document.querySelectorAll('details.narration-section').forEach((details, i) => {
+    const icon = details.querySelector('.toggle-icon');
+    icon.textContent = details.open ? '×' : '+';
+    details.addEventListener('toggle', () => {
+      icon.textContent = details.open ? '×' : '+';
+      recalcTotal();
+    });
+  });
+
+  // Set initial total
+  recalcTotal();
+
+  // Font size controller
+  const BASE_SIZE = 2.4;
+  const STEP      = 0.2;
+  const MIN_SIZE  = 1.0;
+  const MAX_SIZE  = 5.0;
+
+  let currentSize = BASE_SIZE;
+  const root      = document.documentElement;
+  const display   = document.getElementById('font-display');
+
+  function updateSize(newSize) {
+    currentSize = Math.min(MAX_SIZE, Math.max(MIN_SIZE, newSize));
+    root.style.setProperty('--narration-size', currentSize.toFixed(1) + 'rem');
+    const pct = Math.round((currentSize / BASE_SIZE) * 100);
+    display.textContent = pct + '%';
+  }
+
+  document.getElementById('font-increase').addEventListener('click', () => updateSize(currentSize + STEP));
+  document.getElementById('font-decrease').addEventListener('click', () => updateSize(currentSize - STEP));
+</script>
+
+</body>
+</html>
